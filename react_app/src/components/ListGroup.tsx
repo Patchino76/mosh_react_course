@@ -1,40 +1,36 @@
 import { useState } from "react";
 
-function ListGroup() {
-  let cities = ["София", "Пловдив", "Варна", "Бургас", "Земен"];
-  // cities = [];
+interface ListGroupProps{
+  items: string[];
+  heading: string
+}
 
+function ListGroup({items, heading} : ListGroupProps) {
+  
   //Hook
   const [selectedIndex, setSelectedIndex] = useState(-1);
-
-  // if (cities.length == 0) return <p>No items</p>;
-
-  // const getMessage = () => {
-  //   cities.length == 0 ? <p>No items</p> : null;
-  // };
-
-  // const handleClick = (e:MouseEvent) => {console.log(e)}
   return (
     <>
-      <h1>List</h1>
-      {DataTransferItemList.length == 0 && <p>No items</p>}
+      <h1>{heading}</h1>
+      {items.length == 0 && <p>No items</p>}
       <ul className="list-group">
-        {cities.map((city, index) => (
+        {items.map((item, index) => (
           <li
             className={
               selectedIndex === index
                 ? "list-group-item active"
                 : "list-group-item"
             }
-            key={city}
+            key={item}
             onClick={() => setSelectedIndex(index)}
           >
-            {city}
+            {item}
           </li>
         ))}
       </ul>
     </>
-  );
+  )
+  
 }
 
 export default ListGroup;
